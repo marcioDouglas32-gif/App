@@ -1,11 +1,11 @@
 import { useNavigation } from '@react-navigation/core'
 import React, { useEffect, useState } from 'react'
-import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View,ImageBackground } from 'react-native'
+import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View,ImageBackground, Platform, ScrollView } from 'react-native'
 import { auth } from '../firebase'
 
 import{createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth';
 
-const LoginScreen = () => {
+const LoginScreen = ({}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -38,9 +38,14 @@ const LoginScreen = () => {
     return unsubscribe
   }, [])
   return (
-    <KeyboardAvoidingView style={styles.background}>
-     <ImageBackground   source={require('../assets/Login.png')} 
-          style={{ width:'100%', flex:1,resizeMode:'cover',padding:0}}  >
+ 
+    <KeyboardAvoidingView 
+      behavior={Platform.OS == "ios" ? "padding":"height"} 
+    style={styles.background} >
+         <ImageBackground   source={require('../assets/Login.png')} 
+          style={{ width:'100%', flex:1}}  >
+      <ScrollView style={{width:"100%"}}/>
+     
          <View style={styles.container1}>
    
         
@@ -66,7 +71,7 @@ const LoginScreen = () => {
         placeholder = 'Senha'
         placeholderTextColor={'white'}
       />
-       <TouchableOpacity style={{marginLeft:180,height:40}}  >
+       <TouchableOpacity style={{marginLeft:180,height:40}} onPress={() => navigation.replace('ForgetPassword')} >
         <Text style={{color:'white',fontSize:13, fontWeight:'bold', textAlign:'right'}}>Esqueceu sua senha?</Text>
        
       </TouchableOpacity>
@@ -85,6 +90,7 @@ const LoginScreen = () => {
      
   )
 }
+
 
 export default LoginScreen
 
@@ -126,7 +132,7 @@ const styles = StyleSheet.create({
     alignItems:'center',
     justifyContent:'center',
     width:'100%',
-    marginTop:240,
+    marginTop:8,
    
   },
 input:{
