@@ -1,5 +1,12 @@
 import { useNavigation } from "@react-navigation/core";
-import { StyleSheet, Text, View, Image, SafeAreaView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 import { Entypo, FontAwesome } from "@expo/vector-icons";
 const Header = () => {

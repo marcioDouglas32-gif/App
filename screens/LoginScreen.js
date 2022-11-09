@@ -11,6 +11,7 @@ import {
   Platform,
   ScrollView,
   ActivityIndicator,
+  Alert,
 } from "react-native";
 import { auth } from "../firebase";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
@@ -22,7 +23,7 @@ import { set } from "react-native-reanimated";
 
 const LoginScreen = ({}) => {
   const [email, setEmail] = useState("dmarcio998@gmail.com");
-  const [password, setPassword] = useState("marcio1234");
+  const [password, setPassword] = useState("93098216");
   const [loading, setLoading] = useState(false);
 
   const navigation = useNavigation();
@@ -41,8 +42,9 @@ const LoginScreen = ({}) => {
     await signInWithEmailAndPassword(auth, email, password)
       .then((value) => {
         console.log("Login Sucesso!");
+        
       })
-      .catch((error) => console.log(error));
+      .catch((error) => Alert.alert("E-mail ou Senha incorreto!"));
   }
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
